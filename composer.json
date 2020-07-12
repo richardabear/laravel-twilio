@@ -1,0 +1,30 @@
+{
+    "name": "richardabear/laravel-twilio",
+    "description": "Laravel twilio is a package that can be used by the developer to install twilio into the application",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Richard Abear",
+            "email": "owchzzz@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "RichardAbear\\Twilio\\": "src"
+        }
+    },
+    "minimum-stability": "dev",
+    "require": {
+        "twilio/sdk": "dev-master"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "RichardAbear\\Syndicate\\SyndicateServiceProvider"
+            ]
+        }
+    },
+    "require-dev": {
+        "orchestra/testbench": "^6.0@dev"
+    }
+}
