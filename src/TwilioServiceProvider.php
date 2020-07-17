@@ -13,7 +13,7 @@ class TwilioServiceProvider extends ServiceProvider
         $this->loadMigrationsFrom(__DIR__.'/../migrations');
         
         $this->publishes([
-            __DIR__.'../config/twilio.php' => config_path('twilio.php')
+            __DIR__.'/../config/twilio.php' => config_path('twilio.php')
         ]);
     }
 }
