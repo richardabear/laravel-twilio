@@ -8,6 +8,13 @@ use TwilioAdmin;
 
 class TwilioServiceProvider extends ServiceProvider
 {
+    public function register()
+    {
+        $this->app->singleton(TwilioAdminClient::class, function () {
+            return new Twilio(config('twilio.sid'), config('twilio.token'));
+        });
+    }
+    
     public function boot()
     {
         $this->loadMigrationsFrom(__DIR__.'/../migrations');

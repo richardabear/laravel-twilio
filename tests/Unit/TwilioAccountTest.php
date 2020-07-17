@@ -17,6 +17,7 @@ class TwilioAccountTest extends TestCase
         $twilioAccount = new TwilioAccount([
             'friendly_name' => 'test',
         ]);
+
         $twilioAccount->save();
         $this->assertEquals('test', $twilioAccount->friendly_name);
     }

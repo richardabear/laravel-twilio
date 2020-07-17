@@ -11,7 +11,8 @@ class TwilioAccount extends Model
 {
     protected $fillable = [
         'sid',
-        'token'
+        'token',
+        'friendly_name'
     ];
 
     public function getAdapterAttribute(): Twilio
