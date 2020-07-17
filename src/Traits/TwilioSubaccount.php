@@ -1,10 +1,18 @@
 <?php
 namespace RichardAbear\Twilio\Traits;
 
+use RichardAbear\Twilio\Contracts\TwilioAdminClient;
 use RichardAbear\Twilio\Models\TwilioAccount;
 
 trait TwilioSubaccount
 {
+    /**
+     * Twilio Administrator client
+     *
+     * @var String
+     */
+    protected $twilioAdminClient;
+    
     public function bootTwilioSubaccount()
     {
         if (! $this->twilioAccount) {
@@ -19,8 +27,13 @@ trait TwilioSubaccount
 
     protected function createTwilioSubAccount()
     {
-        $account = new TwilioAccount([
-            ''
+        $twilioAccount = new TwilioAccount([]);
+        /**
+         * @var TwilioAdminClient $adminClient
+         */
+        $adminClient = app(TwilioAdminClient::class);
+        $adminClient->api->v2010->accounts->create([
+            'friendlyName' => 
         ]);
     }
 }

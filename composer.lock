@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fb2d70f63c98806f2b80289b91d8bf45",
+    "content-hash": "50cc8aa93b777ad9e2cbf7c24acdf5b9",
     "packages": [
         {
             "name": "twilio/sdk",
@@ -2009,12 +2009,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "18a9b8c3e9bfc8ae859e5112c38de1f6398faa9b"
+                "reference": "b57cd45d8d8626d5b9b38547b85094a8a7160712"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/18a9b8c3e9bfc8ae859e5112c38de1f6398faa9b",
-                "reference": "18a9b8c3e9bfc8ae859e5112c38de1f6398faa9b",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/b57cd45d8d8626d5b9b38547b85094a8a7160712",
+                "reference": "b57cd45d8d8626d5b9b38547b85094a8a7160712",
                 "shasum": ""
             },
             "require": {
@@ -2089,7 +2089,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2020-07-09T09:25:14+00:00"
+            "time": "2020-07-10T14:10:54+00:00"
         },
         {
             "name": "psr/container",
@@ -5104,7 +5104,8 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "twilio/sdk": 20,
-        "orchestra/testbench": 20
+        "orchestra/testbench": 20,
+        "phpunit/phpunit": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
