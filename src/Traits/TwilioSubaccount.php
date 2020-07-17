@@ -32,8 +32,5 @@ trait TwilioSubaccount
          * @var TwilioAdminClient $adminClient
          */
         $adminClient = app(TwilioAdminClient::class);
-        $adminClient->api->v2010->accounts->create([
-            'friendlyName' => 
-        ]);
     }
 }

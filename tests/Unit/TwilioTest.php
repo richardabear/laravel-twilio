@@ -21,12 +21,15 @@ class TwilioTest extends TestCase
 
     public function testCanCreateSubaccountAndClose()
     {
+        if (env('TWILIO_LIVE_TEST')) {
+            return true;
+        }
         $twilio_administrator = new Twilio(config('twilio.sid'), config('twilio.token'));
         $client = $twilio_administrator->getClient();
         $friendly_name = "Test Account";
         $sub_account = $client->api->v2010->accounts->create(['friendlyName' => $friendly_name]);
         $this->assertNotNull($sub_account);
 
-        $client->api->v2010->accounts($sub_account->friendlyName)
+        $client->api->v2010->accounts($sub_account->sid)->update(['status' => 'closed']);
     }
 }

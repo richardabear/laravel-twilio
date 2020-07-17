@@ -3,12 +3,13 @@ namespace RichardAbear\Twilio\Tests;
 
 use Orchestra\Testbench\TestCase as TestbenchTestCase;
 use Illuminate\Foundation\Bootstrap\LoadEnvironmentVariables;
+use RichardAbear\Twilio\TwilioServiceProvider;
 
 class TestCase extends TestbenchTestCase
 {
     protected function getPackageProviders($app)
     {
-        return ['RichardAbear\Twilio\TwilioServiceProvider'];
+        return [TwilioServiceProvider::class];
     }
 
     /**
@@ -21,9 +22,10 @@ class TestCase extends TestbenchTestCase
     {
         $app->useEnvironmentPath(__DIR__.'/..');
         $app->bootstrapWith([LoadEnvironmentVariables::class]);
+
         // Setup default database to use sqlite :memory:
-        $app['config']->set('database.default', 'testbench');
-        $app['config']->set('database.connections.testbench', [
+        $app['config']->set('database.default', 'testing');
+        $app['config']->set('database.connections.testing', [
             'driver'   => 'sqlite',
             'database' => ':memory:',
             'prefix'   => '',
@@ -31,6 +33,14 @@ class TestCase extends TestbenchTestCase
 
         $app['config']->set('twilio.sid', env('TWILIO_ADMIN_SID'));
         $app['config']->set('twilio.token', env('TWILIO_ADMIN_TOKEN'));
+
         parent::getEnvironmentSetUp($app);
+    }
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        
+        $this->artisan('migrate', ['--database' => 'testing'])->run();
     }
 }

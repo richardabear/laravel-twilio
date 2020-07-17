@@ -8,19 +8,12 @@ use TwilioAdmin;
 
 class TwilioServiceProvider extends ServiceProvider
 {
-    public function register()
-    {
-    }
-
     public function boot()
     {
+        $this->loadMigrationsFrom(__DIR__.'/../migrations');
+        
         $this->publishes([
             __DIR__.'../config/twilio.php' => config_path('twilio.php')
         ]);
-
-        $this->app->singleton(TwilioAdminClient::class, function () {
-            $twilioAdminAdapter = new Twilio(config('twilio.sid'), config('twilio.token'));
-            return $twilioAdminAdapter->getClient();
-        });
     }
 }
