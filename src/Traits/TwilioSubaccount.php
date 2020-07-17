@@ -20,12 +20,35 @@ trait TwilioSubaccount
      *
      * @return void
      */
-    public function bootTwilioSubaccount()
+    public static function bootTwilioSubaccount()
     {
-        if (! $this->twilioAccount) { // By default create a twilio account for the attached model.
-            $this->createTwilioAccount();
-        }
+        static::created(function ($model) {
+            $model->validateTwilioAccount();
+        });
+
+        static::updated(function ($model) {
+            $model->validateTwilioAccount();
+        });
+
+        static::deleted(function ($model) {
+            $model->destroyTwilioAccount();
+        });
     }
+
+    /**
+     * Validates that the model has an attached twilio account
+     *
+     * @return self
+     */
+    public function validateTwilioAccount()
+    {
+        if (! $this->twilioAccount) {
+            $this->createTwilioSubAccount();
+        }
+
+        return $this;
+    }
+
 
     /**
      * Returns the twilio account
@@ -37,6 +60,11 @@ trait TwilioSubaccount
         return $this->belongsTo(TwilioAccount::class);
     }
 
+    /**
+     * Creates a new twilio sub account
+     *
+     * @return self
+     */
     protected function createTwilioSubAccount()
     {
         $twilioAccount = new TwilioAccount([
@@ -62,5 +90,29 @@ trait TwilioSubaccount
         } catch (\Exception $e) {
             $twilioAccount->delete();
         }
+
+        return $this;
+    }
+
+    
+    /**
+     * Update the twilio account status
+     *
+     * active
+     * suspended
+     * closed
+     *
+     * @param String $status
+     * @return self
+     */
+    public function updateTwilioAccountStatus($status)
+    {
+        /**
+         * @var TwilioAdminClient $admin
+         */
+        $adminClient = app(TwilioAdminClient::class);
+        $adminClient->api->v2010->accounts($this->twilioAccount->sid)->update(['status' => $status]);
+
+        return $this;
     }
 }

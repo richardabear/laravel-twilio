@@ -1,10 +1,10 @@
 <?php
-namespace RichardAbear\Twilio;
+namespace RichardAbear\Twilio\Tests;
 
 use Illuminate\Database\Eloquent\Model;
 use RichardAbear\Twilio\Traits\TwilioSubaccount;
 
-class TestModel extends Model {
+class TestModel extends Model
+{
     use TwilioSubaccount;
-    
 }
